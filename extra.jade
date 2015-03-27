@@ -1,0 +1,26 @@
+template(name='urlbottom')
+  // iframe for url
+  h3 page to scrape
+  iframe.embed-responsive-item.embedpage(
+    src='#{amznUrl}'
+    , width='800px', height='500px')
+
+template(name='urlside')
+  // iframe for jquery reference
+  .col-sm-3
+    h3 selector reference
+    iframe#jquery_ref.embed-responsive-item.embedpage(src='http://www.w3schools.com/jquery/jquery_ref_selectors.asp'
+      , width='400px', height='1000px')
+
+template(name='git')
+  // iframe for url
+  h3 Github
+  a(href='https://github.com/DeBraid/meteor-tutorial-http-and-session-vars') link
+  iframe.embed-responsive-item.embedpage(
+    src='https://github.com/DeBraid/meteor-tutorial-http-and-session-vars'
+    , width='800px', height='500px')
+template(name='vid')
+  h3 YouTube
+  a(href='https://youtu.be/QA0_0SPd3P8?list=LLNmo1kUC3BhCf45a64xl5oQ') Link
+  iframe.embed-responsive-item.embedpage(
+    src='https://youtu.be/QA0_0SPd3P8?list=LLNmo1kUC3BhCf45a64xl5oQ')
