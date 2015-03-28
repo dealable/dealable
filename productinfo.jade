@@ -1,5 +1,3 @@
-// variable assignment doesn't seem to work
-
 template(name='navbar')
     header
         h1 {{title}}
@@ -13,20 +11,57 @@ template(name='navbar')
             // each loop requires js helper, value gets assigned to unknown text
             each arr3
               span.icon-bar
-          a.navbar-brand(href='/') Product Info
+          a.navbar-brand(href='/') dealable
           +loginButtons
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active: a(href='/') Home
+            li.active: a(href='/') Overview
             li: a(href='market') Market
+            li: a(href='market') Trade
             li: a(href='git') Github
 
-
-template(name='main')
+template(name='overview')
+  .jumbotron
+    h1 dealable
+    p always get the best price instantly
+    p
+      a.btn.btn-primary.btn-lg(href='market', role='button') Check the market
+  .row
+    .col-xs-6.col-sm-4
+      .thumbmail
+        .caption
+          h3 For Buyers
+          p Name your price for all the things you want. If there is a seller, you will instantly win the trade.
+          p
+            a.btn.btn-primary(href='market',role='button') Start winning trades now
+            a.btn.btn-default(href='market',role='button') More information
+    .col-xs-6.col-sm-4
+      .thumbmail
+        .caption
+          h3 For Sellers
+          p List your product at your best price. If there is a buyer, the trade will automatically close.
+          p
+            a.btn.btn-primary(href='market',role='button') Start winning trades now
+            a.btn.btn-default(href='market',role='button') More information
+    .col-xs-6.col-sm-4
+      .thumbmail
+        .caption
+          h3 For Intermediaries
+          p Facilitate buyers and sellers by providing your services.
+          p
+            a.btn.btn-primary(href='market',role='button') Find opportunities now
+            a.btn.btn-default(href='market',role='button') More information
+            
+template(name='market')
   br
   +dashboard
-  +addamzn
+  | Don't see the product you want? Use this form to easily include the product
+//  +addProduct
+//  +addamzn
 
+template(name='addproduct')
+  +insertBookForm
+        
 template(name='trade')
   +navbar
   br
@@ -46,7 +81,7 @@ template(name='trade')
             | #{size}
   br
   +if currentUser
-    +orderinput
+    +insertOrder
   #{else}
     | sign in to trade
   +orders

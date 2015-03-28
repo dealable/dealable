@@ -1,3 +1,6 @@
+Meteor.subscribe "products"
+Meteor.subscribe "orders"
+
 Template.orderinput.events
   "click #bt_sell": (event) ->
     Meteor.call "m_orderinput"

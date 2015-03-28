@@ -5,19 +5,10 @@ Router.configure
 #    urlside: to: 'aside'
 #    urlbottom: to: 'footer'
 
-Router.route '/', ->
-#  (-> @render()),
-#  name: 'main'
-  @layout 'ApplicationLayout'
-  item = Products.findOne
-          _id: "aGBhNTZ4DLZTmPrYb"
-  @render 'trade',
-    data: item
-
-Router.route '/market',
+Router.route '/',
   (-> @render()),
-  name: 'main'
-
+  name: 'overview'
+  
 #http://ubus:3000/trade/aGBhNTZ4DLZTmPrYb
 Router.route '/trade/:_id', ->
   @layout 'ApplicationLayout'
@@ -31,6 +22,9 @@ Router.route '/trade/:_id', ->
 
 Router.route 'git'
 Router.route 'vid'
+Router.route 'market'
+Router.route 'addproduct'
+Router.route 'insertBookForm'
 
 Router.route '/products', ->
   @render 'Products'

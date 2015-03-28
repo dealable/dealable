@@ -49,3 +49,15 @@
 <template name="order">
   <li class="list-group-item"><a href="/trade/{{_id}}">user {{user}} will {{direction}} at {{price}} {{location}} {{time}} </a></li>
 </template>
+
+<template name="insertBookForm">
+  br
+  <h3>Add Product</h3>
+  {{> quickForm collection="Products" id="insertBookForm" type="insert"}}
+</template>
+
+<template name="insertOrder">
+  br
+  <h3>Add Product</h3>
+  {{> quickForm collection="Orders" id="insertOrder" type="insert"}}
+</template>

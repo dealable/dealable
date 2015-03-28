@@ -1,3 +1,6 @@
+Meteor.publish "products", -> Products.find()
+Meteor.publish "orders", -> Orders.find()
+  
 Meteor.methods
   m_orderinput: (direction, product, user, price, location, time) ->
     console.log "m_orderinput", price, location, time
@@ -39,3 +42,4 @@ Meteor.methods
 #    console.log "Products",Products.find({ASIN: ""})
 #    Products.insert
     
+
