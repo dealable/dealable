@@ -4,12 +4,18 @@ Meteor.methods
 #      check coffeescript self-initiating functions
     future = new (Npm.require 'fibers/future')()
     rmNewLines = (str) -> str.replace(/(\r\n|\n|\r)/g,"").trim()
-    xray templ.url
+    getURL = (str) ->
+      patt = /\"([\w\n\:\/_\-\.]+)\"/g
+      arr = while match = patt.exec(str)
+        match[1]
+      arr[0]
+    xray templ.url 
       # prepare can only (str->str) but do as much as possible
       .prepare('rmNewLines', rmNewLines)
+      .prepare('getURL', getURL)
       .select({
         name: templ.name,
-        imgsrc: templ.imgsrc.value,
+        img_src: templ.img_src + " | getURL",
 #        img: templ.imgsrc,
         info: {
           $root: templ.dataroot,
@@ -27,10 +33,14 @@ Meteor.methods
             detail.data = detail.data.replace(header,"").trim()
           detail
           detail.field = header.replace(":","")
+        console.log "before", product.info.details
+        product.info.details.push {field: "name", data: product.name}, {field: "img_src", data: product.img_src}, {field: "amzn_url", data: templ.url}
+        console.log "after", product.info.details
         future.return product
 #        .write(process.stdout)
     xrayResults = do future.wait
-    console.log "xrayResults",  (JSON.stringify xrayResults) #.replace(/\n/g, "\\n") lost newline formating
+    xrayResults.amzn_url = templ.url
+    console.log "xrayResults", (JSON.stringify xrayResults)
     xrayResults
     
   ###  scrape using cheerio.js ###

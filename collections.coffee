@@ -1,6 +1,11 @@
 @Products = new Mongo.Collection "products"
 @Orders = new Mongo.Collection "orders"
 
+#install cfs:filesystem cfs:standard-packages 
+#@Images = new FS.Collection("images",
+#  stores: [new FS.Store.FileSystem("images", {path: "~/images"})]
+#)
+
 # Any client may insert, update, or remove a post without restriction
 #@Products.permit(['insert', 'update', 'remove']).apply()
 #@Orders.permit(['insert', 'update', 'remove']).apply()
@@ -30,7 +35,7 @@
     optional: true
 
   model: {
-    type: Number,
+    type: String,
     label: "Item model number"
     optional: true
   },
@@ -38,15 +43,22 @@
     type: String,
     label: "Manufacturer's Product ID"
     optional: true
+  },
+  img_src: {
+    type: String,
+    label: "Image Source"
   }
 }));
 
 @Orders.attachSchema(new SimpleSchema({
-  direction: {
+  direction:
     type: String,
-    label: "buy/sell",
-    max: 3
-  },
+    label: "buy/sell"
+    allowedValues: ["buy","sell"]
+#    autoform:
+#      afFieldInput:
+#        firstOption: "buy"
+    max: 4
   product:
     type: String,
     label: "product ID"
@@ -69,3 +81,4 @@
     label: "Location"
   }
 }));
+

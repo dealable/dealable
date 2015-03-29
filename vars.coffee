@@ -2,7 +2,7 @@
   url: "http://www.amazon.com/Apple-iPhone-Gold-16-GB/dp/B00NQGP3SO/ref=sr_1_1?s=wireless&ie=UTF8&qid=1427391459&sr=1-1&keywords=iphone+6"
   root: "#a-page"
   name: "#productTitle"
-  imgsrc: "#landingImage" # [src]"
+  img_src: "#landingImage[data-a-dynamic-image]"
   dataroot: "#productDetailsTable .content ul"
   header: "li b"
   data: "li"

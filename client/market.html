@@ -1,0 +1,9 @@
+<template name="listproducts">
+  {{#each listproducts}}
+    {{> product}}
+  {{/each}}
+</template>
+
+<template name="product">
+  <p class="list-group-item"><a href="/trade/{{_id}}">{{name}}</a></p>
+</template>

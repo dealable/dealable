@@ -1,0 +1,51 @@
+<template name="insertOrder">
+  {{# if currentUser}}
+    <div class='panel-heading'>
+      <h3 class='panel-title'>Submit Order</h3>
+    </div>
+    <div>
+      <button id="fill">Update Data</button>
+      {{#autoForm collection="Orders" id="insertOrder" type="insert" doc=helperdoc}}
+        <fieldset>
+          {{> afFieldInput name='direction' options="allowed" noselect=true}}
+          {{> afQuickField name='product'}}
+          {{> afQuickField name='user'}}
+          {{> afQuickField name='price'}}
+          {{> afQuickField name='time'}}
+          {{> afQuickField name='location'}}
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      {{/autoForm}}
+    </div>
+  {{else}}
+    sign in to trade
+  {{/if}}
+</template>
+
+<template name="sellers">
+    {{#each listsellers}}
+      {{> order}}
+    {{/each}}
+</template>
+
+<template name="buyers">
+  <ul class="list-group">
+    {{#each listbuyers}}
+      {{> order}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="traded">
+  <ul class="list-group">
+    {{#each listtransactions}}
+      {{> order}}
+    {{/each}}
+  </ul>
+</template>
+
+
+<template name="order">
+  <li class="list-group-item"><a href="/trade/{{_id}}">{{user}} wants to {{direction}} at {{price}} {{location}} {{time}} </a></li>
+</template>
+

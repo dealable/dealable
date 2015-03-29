@@ -22,14 +22,12 @@ Meteor.methods
   addamzn: (objraw) ->
     console.log objraw.name
     objproduct = {}
-    labeltokey = (label) -> switch label
-        when "ASIN" then "ASIN"
-        when "Product Dimensions" then "size"
-        when "Shipping Weight" then "weight"
-        when "Item model number" then "model"
+    labeltokey = (label) -> switch
+        when label in ["ASIN","name","amzn_url","img_src"] then label
+        when label is "Product Dimensions" then "size"
+        when label is "Shipping Weight" then "weight"
+        when label is "Item model number" then "model"
         else "unknownlabel"
-#    labels = ["ASIN","Product Dimensions","Shipping Weight","Item model number"]
-    objproduct.name = objraw.name
     for detail in objraw.info.details
       key = labeltokey detail.field
       if key isnt "unknownlabel"

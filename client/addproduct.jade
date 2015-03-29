@@ -1,0 +1,61 @@
+template(name='addproduct')
+  .container.bootcards-container
+    .bootcards-cards
+      .col-sm-12
+        .panel.panel-default
+          .panel-heading.clearfix
+            .panel-title
+              h3 Add Product
+          .list-group
+            +insertBookForm
+        +addamzn
+
+template(name='addamzn')
+  .panel.panel-default
+    .panel-heading.clearfix
+      .panel-title
+        h3 Add Amazon Product (experimental)
+    .input-group
+      span.input-group-btn
+        button.btn.btn-default#bt_amzn(type='button')  Amazon URL
+      input.form-control#tb_amzn(type='text', aria-describedby='basic-addon2'
+        , value='#{amznUrl}')
+    .input-group
+      span.input-group-addon root
+      input.form-control#tb_amzn_root(type='text', aria-describedby='basic-addon1'
+        , value='#{amznRoot}')
+    .input-group
+      span.input-group-addon name
+      input.form-control#tb_amzn_name(type='text', aria-describedby='basic-addon1'
+        , value='#{amznName}')
+      span.input-group-addon img
+      input.form-control#tb_amzn_imgsrc(type='text', aria-describedby='basic-addon1'
+        , value='#{amznimgsrc}')
+    .input-group
+      span.input-group-addon dataroot
+      input.form-control#tb_amzn_dataroot(type='text', aria-describedby='basic-addon1'
+      , value='#{amznDataroot}')
+    .input-group
+      span.input-group-addon header
+      input.form-control#tb_amzn_header(type='text', aria-describedby='basic-addon1'
+      , value='#{amznHeader}')
+      span.input-group-addon data
+      input.form-control#tb_amzn_data(type='text', aria-describedby='basic-addon1'
+      , value='#{amznData}')
+
+    button.btn-success#bt_addamzn Add to DB
+
+    p.lead
+      ul.list-group
+        li.list-group-item
+          button.btn.btn-primary(type='button') Name 
+            span.badge #{nameCount}
+          | #{name}
+
+        li.list-group-item
+          button.btn.btn-primary(type='button') Details: 
+            span.badge #{detailsCount}
+          | #{header}
+        li.list-group-item
+          | #{data}
+        img(src='#{img_src}',style="max-height: 300px; max-width: 266px;")

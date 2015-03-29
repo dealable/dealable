@@ -1,0 +1,63 @@
+template(name='trade')
+  +navbar
+  #main.container.bootcards-container
+    .row
+        .col-sm-6
+          .panel.panel-default.bootcards-chart
+            ul.list-group
+              li.list-group-item
+                | Name: #{name}
+              li.list-group-item
+                | Product ID: 
+                input.form-control#tb_productid(type='text', value='#{_id}')
+              img(src="#{img_src}",style="max-height: 300px; max-width: 266px;")
+        .col-sm-6
+          .panel.panel-default.bootcards-chart
+            h3.panel-title Prices by location - $
+              //#bar1
+            #chartForecastVsQuota.bootcards-chart-canvas
+            .panel-footer
+              button.btn.btn-default.btn-block(onclick='toggleChartData(event)')
+                i.fa.fa-table Show Data
+    .row
+        .col-sm-6
+            .panel.panel-default.bootcards-chart
+              .panel-heading
+                h3.panel-title Sellers
+              ul.list-group
+                +sellers
+        .col-sm-6
+            .panel.panel-default.bootcards-chart
+              .panel-heading
+                h3.panel-title Buyers
+              ul.list-group
+                +buyers
+        .col-sm-6
+            .panel.panel-default.bootcards-chart
+              .panel-heading
+                h3.panel-title Traded
+              ul.list-group
+                +traded
+        .col-sm-6
+            .panel.panel-default.bootcards-chart
+              +insertOrder
+
+//template(name='orderinput')
+//  .input-group
+//    span.input-group-addon price
+//    input.form-control#tb_order_price(type='text', aria-describedby='basic-addon2'
+//      , value='0.00')
+//  .input-group
+//    span.input-group-addon location
+//    input.form-control#tb_order_location(type='text', aria-describedby='basic-addon2'
+//      , value='near')
+//  .input-group
+//    span.input-group-addon date and time
+//    input.form-control#tb_order_time(type='text', aria-describedby='basic-addon2'
+//      , value='on')
+//  .input-group
+//    span.input-group-addon productid
+//    input.form-control#tb_order_productid(type='text', aria-describedby='basic-addon2'
+//      , value='#{_id}')
+//  button.btn-danger#bt_sell Sell
+//  button.btn-info#bt_buy Buy
