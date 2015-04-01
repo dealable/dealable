@@ -1,0 +1,45 @@
+colections.coffee
+
+
+@Orders.attachSchema(new SimpleSchema({
+  direction:
+    type: String,
+    label: "buy/sell"
+    allowedValues: ["buy","sell"]
+#    autoform:
+#      afFieldInput:
+#        firstOption: "buy"
+    max: 4
+    optional: true
+  product:
+    type: String,
+    label: "product ID"
+    max: 100
+    optional: true
+
+  user: {
+    type: String,
+    label: "User ID"
+    optional: true
+  },
+  price_order: {
+    type: Number,
+    label: "Price"
+    optional: true
+  },
+  time:
+    type: Date,
+    optional: true
+  location: {
+    type: String,
+    allowedValues: meetinglocations
+    optional: true
+  }
+  varobj:
+    type: [String],
+    label: "what is Array"
+    optional: true
+}))
+ order group, 
+ each order has product, price, location and time range + quality, carrier +...
+

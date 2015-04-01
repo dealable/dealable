@@ -13,6 +13,7 @@
 @hockeyFormat = "#stats_basic_nhl > thead > tr:nth-child(2)"
 
 
+
 #  "cheerio": "0.18.0",
 #  "jsdom": "3.1.2",
 #  "jquery": "2.1.3"

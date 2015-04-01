@@ -1,25 +1,57 @@
+<!--
+<template name="pricedisplay">
+  <p>Left value: {{slider.[0]}}, right value: {{slider.[1]}}</p>
+</template>
+-->
 <template name="insertOrder">
-  {{# if currentUser}}
-    <div class='panel-heading'>
-      <h3 class='panel-title'>Submit Order</h3>
-    </div>
-    <div>
-      <button id="fill">Update Data</button>
-      {{#autoForm collection="Orders" id="insertOrder" type="insert" doc=helperdoc}}
+  <div>
+    {{> fullcalendar calendaroptions}}
+    {{# if currentUser}}
+      {{#autoForm collection="Orders" id="insertOrder" type="insert" }} <!--doc=helperdoc-->
         <fieldset>
-          {{> afFieldInput name='direction' options="allowed" noselect=true}}
-          {{> afQuickField name='product'}}
-          {{> afQuickField name='user'}}
-          {{> afQuickField name='price'}}
-          {{> afQuickField name='time'}}
+<!--          {{> afFieldInput name='direction' options="allowed" noselect=true}}-->
+          {{> afQuickField name='user_id' value=userId}}
+<!--          {{> afQuickField name='price'}}-->
+<!--           timezoneId="America/Los_Angeles"-->
+          {{> afQuickField name='times'}}
+<!--          type="datetime-local"-->
+          <div class="form-group">
+            {{> timezonePicker class="form-control" selected=timezone}}
+<!--          {{> afQuickField name='timezone' options="allowed" noselect=true}}-->
+          </div>
+          <div class="form-group" id='countryselector'>
+            {{> countryCodeSelect selected=selectedCode props=selectBoxProperties}}
+          </div>
+          
           {{> afQuickField name='location'}}
+          {{> afQuickField name='product_id' value=_id}}
+          
+          {{> afQuickField name='direction' options='allowed' noselect=true}}
+          {{> afQuickField name='price'}}
+
+<!--
+          <div class="form-group{{#if afFieldIsInvalid name='price_order'}} has-error{{/if}}">
+            <div class="input-group" id='inp_price_order'>
+              <span class="input-group-addon">$</span>
+              {{> afFieldInput name='price_order'}}
+              <span class="input-group-addon">/each</span>
+            </div>
+            {{#if afFieldIsInvalid name='price_order'}}
+            <span class="help-block">{{afFieldMessage name='price_order'}}</span>
+            {{/if}}
+          </div>
+-->
+        {{> afQuickField name='live_order'}}  
+        <small><a href="https://squareup.com/">Deposit</a> or <a href="https://www.bitrated.com/explore">Bitrated</a> trust is required for live order</small><br/>
+        <button class="btn btn-success">Buy</button>
+        <button class="btn btn-danger">Sell</button>
         </fieldset>
-        <button type="submit" class="btn btn-primary">Submit</button>
       {{/autoForm}}
-    </div>
-  {{else}}
-    sign in to trade
-  {{/if}}
+    
+    {{else}}
+      sign in to trade
+    {{/if}}
+  </div>
 </template>
 
 <template name="sellers">

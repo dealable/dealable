@@ -21,12 +21,17 @@ Router.route '/', ->
     #  name: '/overview'
 
 #http://ubus:3000/trade/aGBhNTZ4DLZTmPrYb
-Router.route '/trade/:_id', ->
-  @layout 'ApplicationLayout'
-  item = Products.findOne
-          _id: @params._id
-  @render 'trade',
-    data: item
+Router.route '/trade/:_id',
+#  waitOn: ->
+#    Meteor.subscribe "users" #, Meteor.userId
+
+  action: ->
+    @layout 'ApplicationLayout'
+    item = Products.findOne
+            _id: @params._id
+    @render 'trade',
+      data: item
+
     
 #Router.route '/trade/:_id', ->
 #  @layout 'ApplicationLayout'

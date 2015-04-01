@@ -1,3 +1,4 @@
+@Schemas = {}
 @Products = new Mongo.Collection "products"
 @Orders = new Mongo.Collection "orders"
 
@@ -10,18 +11,23 @@
 #@Products.permit(['insert', 'update', 'remove']).apply()
 #@Orders.permit(['insert', 'update', 'remove']).apply()
 
-@Products.attachSchema(new SimpleSchema({
+#@Products.attachSchema(new SimpleSchema({
+Products.attachSchema(Schemas.Products)
+Schemas.Products = (new SimpleSchema({
   name: {
     type: String,
     label: "Name of product",
+    optional: true
   }
   ASIN: {
     type: String,
     label: "Amazon ASIN number"
+    optional: true
   },
   amzn_url: {
     type: String,
     label: "Amazon URL"
+    optional: true
   },                               
   size: {
     type: String,
@@ -47,38 +53,67 @@
   img_src: {
     type: String,
     label: "Image Source"
+    optional: true
   }
 }));
 
-@Orders.attachSchema(new SimpleSchema({
+
+AddressSchema = new SimpleSchema
+  country:
+    type: String
+  zipcode:
+    type: String
+  near_station:
+    type: Boolean
+# consider using datetime interval data type for performance. Closure has date interval
+TimeIntervalSchema = new SimpleSchema
+  timezone:
+    type: String
+  time_from:
+    type: Date # datetime using input type=datetime
+    autoform:
+      afFieldInput:
+        type: "bootstrap-datetimepicker"
+        timezoneId: "PST"
+        dateTimePickerOptions:
+          sideBySide: true
+          stepping: 15
+
+  time_until:
+    type: Date
+    autoform:
+      afFieldInput:
+        type: "bootstrap-datetimepicker"
+        timezoneId: "America/New_York"
+        dateTimePickerOptions:
+          sideBySide: true
+          stepping: 15
+OrderSchema = new SimpleSchema
+  user_id:
+    type: String
+  product_id:
+    type: String
+  live_order:
+    label: "Live order - trade is irreversibly autocompleted if a match meets all your conditions"
+    type: Boolean
   direction:
-    type: String,
-    label: "buy/sell"
+    type: String
     allowedValues: ["buy","sell"]
-#    autoform:
-#      afFieldInput:
-#        firstOption: "buy"
-    max: 4
-  product:
-    type: String,
-    label: "product ID"
-    max: 100
+  price:
+    type: Number
+  location:
+    type: AddressSchema
+  times:
+    type: [TimeIntervalSchema]
 
-  user: {
-    type: String,
-    label: "User ID"
-  },
-  price: {
-    type: Number,
-    label: "Price"
-  },
-  time: {
-    type: Date,
-    label: "Date and time"
-  },
-  location: {
-    type: String,
-    label: "Location"
+@Orders.attachSchema(OrderSchema)
+
+@AdminConfig = {
+  name: 'My App'
+  adminEmails: ['a@b.com']
+  collections: {
+    Products: {}
+    Orders: {}
   }
-}));
-
+}
+  #    regEx: /^A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]$/
