@@ -105,6 +105,8 @@ OrderSchema = new SimpleSchema
     type: AddressSchema
   times:
     type: [TimeIntervalSchema]
+#extra conditions
+
 
 @Orders.attachSchema(OrderSchema)
 

@@ -16,10 +16,23 @@ template(name='trade')
                 p: div
                   #price_order
                 br
+                .map-container
+                  input#pac-input.controls(type='text', placeholder='Enter a location')
+                  #type-selector.controls
+                    input#changetype-all(type='radio', name='type', checked='checked')
+                    label(for='changetype-all') All
+                    input#changetype-establishment(type='radio', name='type')
+                    label(for='changetype-establishment') Establishments
+                    input#changetype-address(type='radio', name='type')
+                    label(for='changetype-address') Addresses
+                    input#changetype-geocode(type='radio', name='type')
+                    label(for='changetype-geocode') Geocodes
+
+                  +googleMap name="placemap" options=placemapOptions
                 br
                 p: div
                   input.form-control#tb_price_order(type='text')
-                  +insertOrder
+                  //+insertOrder
               //img(src="#{img_src}",style="max-height: 300px; max-width: 266px;")
               //img(src="#{img_path}",style="max-height: 300px; max-width: 266px;")
                 

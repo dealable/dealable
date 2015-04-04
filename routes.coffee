@@ -7,6 +7,15 @@ Router.configure
   #    urlside: to: 'aside'
   #    urlbottom: to: 'footer'
 
+Router.onBeforeAction (->
+  GoogleMaps.load({libraries: 'geometry,places' })
+  @next()
+),
+  only: ['trade.item']
+
+#    this.next()
+#  , only: ['trade']
+
 Router.route '/', ->
   @render 'overview'
 
@@ -24,7 +33,7 @@ Router.route '/', ->
 Router.route '/trade/:_id',
 #  waitOn: ->
 #    Meteor.subscribe "users" #, Meteor.userId
-
+  name: 'trade.item'
   action: ->
     @layout 'ApplicationLayout'
     item = Products.findOne
