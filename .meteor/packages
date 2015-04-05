@@ -9,20 +9,17 @@ insecure
 http
 
 
-viacdn:bootstrap
 iron:router
 coffeescript
 jquery
 mquandalle:jade
 lai:meteor-xray
-accounts-ui
 accounts-password
 aldeed:autoform
 aldeed:collection2
 ongoworks:security
 yogiben:autoform-file
 viacdn:font-awesome
-pcuci:bootcards
 bshamblen:morrisjs
 afruth:chapp
 mrt:chatworks
@@ -30,7 +27,6 @@ rcy:nouislider
 mrt:moment-timezone
 joshowens:timezone-picker
 3stack:country-codes
-yogiben:admin
 accounts-facebook
 accounts-google
 accounts-github
@@ -41,3 +37,10 @@ aldeed:autoform-bs-datetimepicker
 tsega:bootstrap3-datetimepicker
 rzymek:fullcalendar
 dburles:google-maps
+yogiben:admin
+aldeed:tabular
+zimme:select2-bootstrap3-css
+aldeed:autoform-select2
+nemo64:bootstrap
+viacdn:bootstrapjs
+ian:accounts-ui-bootstrap-3

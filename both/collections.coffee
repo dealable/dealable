@@ -1,6 +1,50 @@
-@Schemas = {}
+
+@Schemas = new Mongo.Collection "schemas"
 @Products = new Mongo.Collection "products"
 @Orders = new Mongo.Collection "orders"
+
+DetailVoteSchema = new SimpleSchema
+  voter:
+    type: String
+  date:
+    type: Date
+  reason:
+    type: String
+    optional: true
+
+CollectionDetailSchema = new SimpleSchema
+  name:
+    type: String
+  type:
+    type: String
+  allowedValues:
+    type: [String]
+    optional: true
+  addedby:
+    type: String
+#    defaultValue: Meteor.userId()
+  addedDate:
+    type: Date
+#  upvoteCount:
+#    type: Number
+#    defaultValue: 0
+#  downvoteCount:
+#    type: Number
+#    defaultValue: 0
+#  upvotes:
+#    type: DetailVoteSchema
+#    defaultValue: {}
+#    optional: true
+#  downvotes:
+#    type: DetailVoteSchema
+#    defaultValue: {}
+
+@Schemas.attachSchema(new SimpleSchema
+  name:
+    type: String
+  fields:
+    type: [CollectionDetailSchema]
+)
 
 #install cfs:filesystem cfs:standard-packages 
 #@Images = new FS.Collection("images",
@@ -12,8 +56,8 @@
 #@Orders.permit(['insert', 'update', 'remove']).apply()
 
 #@Products.attachSchema(new SimpleSchema({
-Products.attachSchema(Schemas.Products)
-Schemas.Products = (new SimpleSchema({
+
+productSchema = (new SimpleSchema({
   name: {
     type: String,
     label: "Name of product",
@@ -57,6 +101,7 @@ Schemas.Products = (new SimpleSchema({
   }
 }));
 
+@Products.attachSchema(productSchema)
 
 AddressSchema = new SimpleSchema
   country:

@@ -1,13 +1,30 @@
+template(name='bookCheckOutCell')
+  div
 template(name='addproduct')
-  .container.bootcards-container
-    .bootcards-cards
-      .col-sm-12
+  .page-container#content
+    .row#title_row
+      .col-md-12
+        #page_menu.pull-right
+    .panel.panel-default
+      .panel-heading.clearfix
+        h3.panel-title  Define Schema
+      //+tabular table=TabularTables.Schemas class="table table-striped table-bordered table-condensed"
+      //+schemas
+      ul.list-group
+        //+schemaFormT
+      .col-sm-9
         .panel.panel-default
           .panel-heading.clearfix
-            .panel-title
-              h3 Add Product
-          .list-group
+            h3.panel-title  Define Schema
+          ul.list-group
+            +schemaFormUT
+      .col-sm-9
+        .panel.panel-default
+          .panel-heading.clearfix
+            h3.panel-title Add Product
+          ul.list-group
             +insertBookForm
+      .col-sm-9
         +addamzn
 
 template(name='addamzn')

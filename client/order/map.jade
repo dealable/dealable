@@ -1,0 +1,54 @@
+template(name='map')
+  .map-container
+    input#pac-input.controls(type='text', placeholder='Enter a location')
+    #type-selector.controls
+      input#changetype-all(type='radio', name='type', checked='checked')
+      label(for='changetype-all') All
+      input#changetype-establishment(type='radio', name='type')
+      label(for='changetype-establishment') Establishments
+      input#changetype-address(type='radio', name='type')
+      label(for='changetype-address') Addresses
+      input#changetype-geocode(type='radio', name='type')
+      label(for='changetype-geocode') Geocodes
+
+    +googleMap name="placemap" options=placemapOptions
+    #meetingplaces
+      h2 Meeting places
+      ul#meetingplaceslist
+        +meetingplacesitems
+
+template(name='placeTemplate')
+  //#editModal.modal.fade.in(tabindex='-1', role='dialog', aria-labelledby='editModal', aria-hidden='false', style='display: block; padding-right: 17px;')
+    .modal-backdrop.fade.in(style='height: 638px;')
+  #placeModal.modal.fade.in(role='dialog')
+    .modal-dialog
+      .modal-content
+        form.form-horizontal
+          .modal-header
+            .btn-group.pull-left
+              button.btn.btn-danger(data-dismiss='modal')
+                | Cancel
+            .btn-group.pull-right
+              button.btn.btn-success(type='submit')
+                | Save
+            h3.modal-title New Company
+          .modal-body
+            .form-group
+              label.col-xs-3.control-label Name
+              .col-xs-9
+                input.form-control(type='text', name='name', placeholder='Company', value='')
+            .form-group
+              label.col-xs-3.control-label Type
+              .col-xs-9
+                select.form-control(name='type', value='')
+                  option(value='', selected='') Select a Type...
+                  option(value='Prospect') Prospect
+                  option(value='Customer') Customer
+                  option(value='Inactive') Inactive
+            .form-group
+              label.col-xs-3.control-label Location
+              .col-xs-9
+                input.form-control(type='text', name='location', placeholder='Location', value='')
+          .modal-footer
+            small.pull-left Built with Bootcards - Form Card
+            a.btn.btn-link.btn-xs.pull-right(href='#') View Source

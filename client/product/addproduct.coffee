@@ -1,4 +1,9 @@
 Meteor.subscribe "products"
+Meteor.subscribe "schemas"
+
+Template.schemas.helpers
+  listschemas: -> 
+    Schemas.find()
 
 Template.addamzn.helpers
   amznUrl: -> amzn.url

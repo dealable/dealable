@@ -1,5 +1,6 @@
 Meteor.publish "products", -> Products.find()
 Meteor.publish "orders", -> Orders.find()
+Meteor.publish "schemas", -> Schemas.find()
   
 Meteor.methods
   m_orderinput: (direction, product, user, price, location, time) ->

@@ -1,0 +1,20 @@
+<template name="schemas">
+  schemas template
+  <ul>
+  {{#each listschemas}}
+    <li>li getting nothing {{name}}</li>
+  {{/each}}
+  </ul>
+</template>
+
+<template name="insertBookForm">
+  {{> quickForm collection="Products" id="insertBookForm" type="insert"}}
+</template>
+
+<template name="schemaFormT">
+  {{> quickForm collection="Schemas" id="schemaF" type="insert"}}
+</template>
+
+<template name="schemaFormUT">
+  {{> quickForm collection="Schemas" id="schemaFormUT" type="update"}}
+</template>

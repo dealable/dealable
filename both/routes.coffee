@@ -7,23 +7,33 @@ Router.configure
   #    urlside: to: 'aside'
   #    urlbottom: to: 'footer'
 
-Router.onBeforeAction (->
-  GoogleMaps.load({libraries: 'geometry,places' })
-  @next()
-),
-  only: ['trade.item']
+if Meteor.isClient
+  Router.onBeforeAction (->
+  #    this.next()
+  #  , only: ['trade']
+    # loading indicator here
+    if !@ready()
+      $('body').addClass 'wait'
+    else
+      $('body').removeClass 'wait'
+#      @next()
 
-#    this.next()
-#  , only: ['trade']
+    GoogleMaps.load({libraries: 'geometry,places' })
+    @next()
+  ),
+    only: ['trade.item']
 
-Router.route '/', ->
-  @render 'overview'
+Router.route '/',
+  name: 'overview'
+  action: ->
+    @render 'overview'
 
   onBeforeAction: (pause) ->
       #you could set the user name on user login
       Session.set 'chapp-username','Desired username'
       #The room identifier. Iron router's before action can be a great spot to set this.
       Session.set 'chapp-docid','uniqueIdentifier'
+      @next()
 
     #Router.route '/',
     #  (-> @render()),
@@ -40,20 +50,33 @@ Router.route '/trade/:_id',
             _id: @params._id
     @render 'trade',
       data: item
+      
+Router.route '/trade/:_id/place',
+#  waitOn: ->
+#    Meteor.subscribe "users" #, Meteor.userId
+  layoutTemplate: {}
+  yieldRegions: {}
+  name: 'order.place'
+  action: ->
+    
+#    @layout 'ApplicationLayout'
+#    item = Products.findOne
+#            _id: @params._id
+    @render 'placeTemplate',
+#      data: item
 
     
 #Router.route '/trade/:_id', ->
 #  @layout 'ApplicationLayout'
-
-Router.route 'git'
-Router.route 'vid'
-Router.route 'market'
-Router.route 'chat'
-Router.route 'addproduct'
-Router.route 'insertBookForm'
-
-Router.route '/products', ->
-  @render 'Products'
+Router.map ->
+  @route 'git'
+  @route 'vid'
+  @route 'market'
+  @route 'chat'
+  @route 'addproduct'
+  @route 'insertBookForm'
+  @route '/products', ->
+    @render 'Products'
 
 PostController = RouteController.extend
   action: ->

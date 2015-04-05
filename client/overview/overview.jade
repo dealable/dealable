@@ -1,29 +1,43 @@
 template(name='navbar')
     header
         h1 {{title}}
-    nav.navbar.navbar-inverse.navbar-fixed-top
-      .container
+    .navbar.navbar-default.navbar-fixed-top(role="navigation")
+      .navbar-container.container
         .navbar-header
           button.navbar-toggle.collapsed(type='button', data-toggle='collapse'
-              , data-target='#navbar'
+              , data-target='.navbar-collapse'
               , aria-expanded='false', aria-controls='navbar')
             span.sr-only Toggle navigation
             // each loop requires js helper, value gets assigned to unknown text
             each arr3
               span.icon-bar
-          a.navbar-brand(href='/') dealable
-          +loginButtons
-        #navbar.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li.active: a(href='/') Overview
-            li: a(href='/market') Market
-            li: a(href='/addproduct') AddProduct
-            li: a(href='/chat') Chat
-            li: a(href='https://github.com/dealable/dealable') Github
+          a.navbar-brand(href='#') dealable
+          
+        .collapse.navbar-collapse#menu
+          ul#menu-items.nav.navbar-nav
+          
+            li#menu-item-simple(class="{{menuItemClass 'overview'}}")
+              a(href='/') Overview
+            li#menu-item-simple(class="{{menuItemClass 'market'}}")
+              a(href='/market') Market
+            li#menu-item-simple(class="{{menuItemClass 'addproduct'}}")
+              a(href='/addproduct') AddProduct
+            li#menu-item-simple(class="{{menuItemClass 'chat'}}")
+              a(href='/chat') Chat
+            li#menu-item-simple
+              a(href='https://github.com/dealable/dealable') Github
+            li#menu-item-simple
+              div
+                +loginButtons 
+                //align="right"
+    .navbar-spacer
 
 template(name='overview')
   +navbar
-  .container.bootcards-container
+  .page-container#content
+    .row#title_row
+      .col-md-12
+        #page_menu.pull-right
     .jumbotron
       h1 dealable
       p always get the best price instantly

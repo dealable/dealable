@@ -10,7 +10,7 @@
       {{#autoForm collection="Orders" id="insertOrder" type="insert" }} <!--doc=helperdoc-->
         <fieldset>
 <!--          {{> afFieldInput name='direction' options="allowed" noselect=true}}-->
-          {{> afQuickField name='user_id' value=userId}}
+          {{> afQuickField name='user_id' value=userId type="select2" multiple=true select2Options=s2Opts}}
 <!--          {{> afQuickField name='price'}}-->
 <!--           timezoneId="America/Los_Angeles"-->
           {{> afQuickField name='times'}}
@@ -81,3 +81,8 @@
   <li class="list-group-item"><a href="/trade/{{_id}}">{{user}} wants to {{direction}} at {{price}} {{location}} {{time}} </a></li>
 </template>
 
+<template name="meetingplacesitems">
+  {{#each meetingplacesvar}}
+    <li class="list-group-item">{{name}} {{address}} {{placeid}} {{lng}} {{lat}} {{radius}} </li>
+  {{/each}}
+</template>
