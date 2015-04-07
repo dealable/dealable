@@ -33,34 +33,38 @@ template(name='navbar')
     .navbar-spacer
 
 template(name='overview')
-  +navbar
-  .page-container#content
-    .row#title_row
-      .col-md-12
-        #page_menu.pull-right
-    .jumbotron
-      h1 dealable
-      p always get the best price instantly
-      p
-        a.btn.btn-primary.btn-lg(href='market', role='button') Check the market
-    .row
-        .col-sm-6
-          .panel.panel-default
+  .row#title_row
+    .col-md-12
+      #page_menu.pull-right
+  .jumbotron
+    h1 dealable
+    p always get the best price instantly
+    p
+      a.btn.btn-primary.btn-lg(href='market', role='button') Check the market
+  .row
+      .col-sm-6
+        .panel.panel-default
+          .panel-heading
             h3 For Buyers
+          .panel-body
             p Name your price for all the things you want. If there is a seller, you will instantly win the trade.
             p
               a.btn.btn-primary(href='market',role='button') Start winning trades now
               a.btn.btn-default(href='market',role='button') More information
-        .col-sm-6
-          .panel.panel-default
+      .col-sm-6
+        .panel.panel-default
+          .panel-heading
             h3 For Sellers
+          .panel-body
             p List your product at your best price. If there is a buyer, the trade will automatically close.
             p
               a.btn.btn-primary(href='market',role='button') Start winning trades now
               a.btn.btn-default(href='market',role='button') More information
-        .col-sm-6
-          .panel.panel-default
+      .col-sm-6
+        .panel.panel-default
+          .panel-heading
             h3 For Intermediaries (TODO)
+          .panel-body
             p Facilitate buyers and sellers by providing your services.
             p
               a.btn.btn-primary(href='market',role='button') Find opportunities now

@@ -61,55 +61,64 @@ productSchema = (new SimpleSchema({
   name: {
     type: String,
     label: "Name of product",
-    optional: true
   }
-  ASIN: {
+  mfg_url:
     type: String,
-    label: "Amazon ASIN number"
-    optional: true
-  },
-  amzn_url: {
-    type: String,
-    label: "Amazon URL"
-    optional: true
-  },                               
-  size: {
-    type: String,
-    label: "product ID"
-    max: 100
-    optional: true
-  },
-  weight: 
-    type: String
-    label: "weight"
-    optional: true
-
+    label: "Manufacturer URL"
   model: {
     type: String,
     label: "Item model number"
     optional: true
-  },
-  mfg_id: {
-    type: String,
-    label: "Manufacturer's Product ID"
-    optional: true
-  },
-  img_src: {
-    type: String,
-    label: "Image Source"
-    optional: true
   }
+  img_iurl: {
+    type: String,
+    label: "Image URL"
+  }
+#  ASIN: {
+#    type: String,
+#    label: "Amazon ASIN number"
+#    optional: true
+#  },
+#  amzn_url: {
+#    type: String,
+#    label: "Amazon URL"
+#    optional: true
+#  },                               
+#  size: {
+#    type: String,
+#    label: "product ID"
+#    max: 100
+#    optional: true
+#  },
+#  weight: 
+#    type: String
+#    label: "weight"
+#    optional: true
+
+
+#  mfg_id: {
+#    type: String,
+#    label: "Manufacturer's Product ID"
+#    optional: true
+#  },
+
 }));
 
 @Products.attachSchema(productSchema)
 
 AddressSchema = new SimpleSchema
-  country:
-    type: String
-  zipcode:
-    type: String
-  near_station:
-    type: Boolean
+  lat:
+    type: Number
+    decimal: true
+  lng:
+    type: Number
+    decimal: true
+#  country:
+#    type: String
+#  zipcode:
+#    type: String
+#  near_station:
+#    type: Boolean
 # consider using datetime interval data type for performance. Closure has date interval
 TimeIntervalSchema = new SimpleSchema
   timezone:
@@ -136,8 +145,10 @@ TimeIntervalSchema = new SimpleSchema
 OrderSchema = new SimpleSchema
   user_id:
     type: String
+    label: "User ID"
   product_id:
     type: String
+    label: "Product ID"
   live_order:
     label: "Live order - trade is irreversibly autocompleted if a match meets all your conditions"
     type: Boolean
@@ -148,8 +159,10 @@ OrderSchema = new SimpleSchema
     type: Number
   location:
     type: AddressSchema
-  times:
-    type: [TimeIntervalSchema]
+  dateToMeet:
+    type: Date
+#  times:
+#    type: [TimeIntervalSchema]
 #extra conditions
 
 

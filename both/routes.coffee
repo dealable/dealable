@@ -1,7 +1,7 @@
 Router.configure
-  layoutTemplate: 'ApplicationLayout'
+  layoutTemplate: 'layout'
   yieldRegions:
-    navbar: to: 'top'
+    'navbar': to: 'top'
   notFoundTemplate: 'notFound'
   loadingTemplate: 'loading'
   #    urlside: to: 'aside'
@@ -9,14 +9,10 @@ Router.configure
 
 if Meteor.isClient
   Router.onBeforeAction (->
-  #    this.next()
-  #  , only: ['trade']
-    # loading indicator here
     if !@ready()
       $('body').addClass 'wait'
     else
       $('body').removeClass 'wait'
-#      @next()
 
     GoogleMaps.load({libraries: 'geometry,places' })
     @next()
@@ -25,9 +21,6 @@ if Meteor.isClient
 
 Router.route '/',
   name: 'overview'
-  action: ->
-    @render 'overview'
-
   onBeforeAction: (pause) ->
       #you could set the user name on user login
       Session.set 'chapp-username','Desired username'
@@ -35,9 +28,6 @@ Router.route '/',
       Session.set 'chapp-docid','uniqueIdentifier'
       @next()
 
-    #Router.route '/',
-    #  (-> @render()),
-    #  name: '/overview'
 
 #http://ubus:3000/trade/aGBhNTZ4DLZTmPrYb
 Router.route '/trade/:_id',
@@ -45,29 +35,24 @@ Router.route '/trade/:_id',
 #    Meteor.subscribe "users" #, Meteor.userId
   name: 'trade.item'
   action: ->
-    @layout 'ApplicationLayout'
+    @layout 'layout'
     item = Products.findOne
             _id: @params._id
     @render 'trade',
       data: item
       
 Router.route '/trade/:_id/place',
-#  waitOn: ->
-#    Meteor.subscribe "users" #, Meteor.userId
-  layoutTemplate: {}
-  yieldRegions: {}
   name: 'order.place'
+  template: 'placeTemplate',
   action: ->
     
-#    @layout 'ApplicationLayout'
 #    item = Products.findOne
 #            _id: @params._id
-    @render 'placeTemplate',
 #      data: item
 
     
 #Router.route '/trade/:_id', ->
-#  @layout 'ApplicationLayout'
+#  @layout 'layout'
 Router.map ->
   @route 'git'
   @route 'vid'
@@ -85,15 +70,3 @@ PostController = RouteController.extend
     this.state.set('addproduct', this.params._id);
     this.render();
 
-
-Router.route '/files/:filename', (->
-  @response.end 'hi from the server\n'
-),
-  where: 'server'
-
-Router.route('/restful',
-  where: 'server'
-).get(->
-  @response.end 'get request\n'
-).post ->
-  @response.end 'post request\n'

@@ -1,3 +1,4 @@
+
 <!--
 <template name="pricedisplay">
   <p>Left value: {{slider.[0]}}, right value: {{slider.[1]}}</p>
@@ -5,7 +6,7 @@
 -->
 <template name="insertOrder">
   <div>
-    {{> fullcalendar calendaroptions}}
+<!--    {{> fullcalendar calendaroptions}}-->
     {{# if currentUser}}
       {{#autoForm collection="Orders" id="insertOrder" type="insert" }} <!--doc=helperdoc-->
         <fieldset>
@@ -16,11 +17,11 @@
           {{> afQuickField name='times'}}
 <!--          type="datetime-local"-->
           <div class="form-group">
-            {{> timezonePicker class="form-control" selected=timezone}}
+<!--            {{> timezonePicker class="form-control" selected=timezone}}-->
 <!--          {{> afQuickField name='timezone' options="allowed" noselect=true}}-->
           </div>
           <div class="form-group" id='countryselector'>
-            {{> countryCodeSelect selected=selectedCode props=selectBoxProperties}}
+<!--            {{> countryCodeSelect selected=selectedCode props=selectBoxProperties}}-->
           </div>
           
           {{> afQuickField name='location'}}
@@ -78,7 +79,7 @@
 
 
 <template name="order">
-  <li class="list-group-item"><a href="/trade/{{_id}}">{{user}} wants to {{direction}} at {{price}} {{location}} {{time}} </a></li>
+  <li class="list-group-item"><a href="/trade/{{_id}}">{{user_id}} wants to {{direction}} at ${{price}} near {{location.lat}},{{location.lng}} on {{dateToMeet}} </a>   <button class="delete btn btn-danger">&times;</button> </li>
 </template>
 
 <template name="meetingplacesitems">

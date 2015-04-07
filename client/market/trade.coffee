@@ -2,6 +2,9 @@ Meteor.subscribe "orders"
 #Meteor.subscribe "users"
 # set the user's timezone
 #
+Session.set "poslat", 37.779528
+Session.set "poslng", -122.413756
+
 Template.insertOrder.helpers
   s2Opts: ->
     {placeholder: 'foo', tags: true}
@@ -13,10 +16,26 @@ Template.buyers.helpers
 Template.traded.helpers
   listtransactions: -> Orders.find()
 
+Template.trade.events
+  "click .delete": -> Orders.remove(this._id)
+  
 Template.trade.helpers
-  userlocation: -> Session.get 'userlocation'
+  userlat: -> Session.get "poslat"
+  userlng: -> Session.get "poslng"
+  userId: -> Meteor.userId()
+  bid: -> Orders.findOne({direction: "buy"},{sort: {'price': 1}}).price
+  offer: -> Orders.findOne({direction: "sell"},{sort: {'price': -1}}).price
+#  mid: mid: -> (bid() + offer()) / 2
 
 Template.trade.rendered = ->
+    setPos = (lat, lng) ->
+      Session.set "poslat", lat
+      Session.set "poslng", lng
+
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition (pos) ->
+        setPos pos.coords.latitude, pos.coords.longitude
+
 #    console.log Meteor.user()
     if Meteor.user()
       if 'profile' of Meteor.user()

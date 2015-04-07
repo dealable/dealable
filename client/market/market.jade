@@ -1,17 +1,16 @@
 template(name='market')
-  .page-container#content
-    .row#title_row
-      .col-md-12
-        #page_menu.pull-right
-    .panel.panel-default
-      .panel-heading.clearfix
-        .panel-title
-          h3 Market activity
-      .list-group
-          +listproducts
-      .panel-footer
-        small Don't see the product you want? Use this form to easily include the product
-          a(href="addproduct")
-            p Add Product now
+  .row#title_row
+    .col-md-12
+      #page_menu.pull-right
+  .panel.panel-default
+    .panel-heading.clearfix
+      .panel-title
+        h3 Market activity
+    .list-group
+        +listproducts
+    .panel-footer
+      small Don't see the product you want? Use this form to easily include the product
+        a(href="addproduct")
+          p Add Product now
 //  +addProduct
 //  +addamzn

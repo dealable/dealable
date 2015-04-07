@@ -2,32 +2,47 @@ template(name='trade')
   +navbar
   #main.container.bootcards-container
     .row
-      .col-sm-12
+      .col-sm-6
         .panel.panel-default.bootcards-chart
           ul.list-group
             li.list-group-item
               a(href="#{amzn_url}") #{name}
             li.list-group-item
-              | current price: $300
+              //| current price: #{mid}
+              | bid: $#{bid}
               br
-              small bid: $200
-              small offer: $400
+              | offer: $#{offer}
             li.list-group-item
               p: div
-                #price_order
+                h3 Product ID
+                | #{_id}
+            li.list-group-item
+              p: div
+                h3 Your Details for the Order
+                | User ID: #{userId}
+                br
+                | Latitude: #{userlat}
+                br
+                | Longitude: #{userlng}
+                //#price_order
               br
-              a.btn.btn-primary.pull-right.hidden-xs(href='#{_id}/place', data-toggle='modal', data-target='#placeModal')
+              //a.btn.btn-primary.pull-right.hidden-xs(href='#{_id}/place', data-toggle='modal', data-target='#placeModal')
                 i.fa.fa-pencil
                 span Edit
-              +map
-              +placeTemplate
+              //+map
+              //+placeTemplate
+            img(src="#{img_src}",style="max-height: 300px; max-width: 266px;")
+            img(src="#{img_path}",style="max-height: 300px; max-width: 266px;")
 
-              br
+      .col-sm-6
+        .panel.panel-default.bootcards-chart
               p: div
-                input.form-control#tb_price_order(type='text')
+                +quickForm collection="Orders" type="insert" 
+                //omitFields
+                //id="insertBookForm"
+                //input.form-control#tb_price_order(type='text')
                 //+insertOrder
-            //img(src="#{img_src}",style="max-height: 300px; max-width: 266px;")
-            //img(src="#{img_path}",style="max-height: 300px; max-width: 266px;")
+
                 
     .row
       .col-sm-6
@@ -42,7 +57,7 @@ template(name='trade')
               h3.panel-title Buyers
             ul.list-group
               +buyers
-      .col-sm-6
+      //.col-sm-6
         .panel.panel-default.bootcards-chart
           h3.panel-title TODO: reactively show Prices by location - $
             //#bar1
@@ -53,7 +68,7 @@ template(name='trade')
       .col-sm-6
           .panel.panel-default.bootcards-chart
             .panel-heading
-              h3.panel-title Traded
+              h3.panel-title All Trades
             ul.list-group
               +traded
 //        .col-sm-6
