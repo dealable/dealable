@@ -6,7 +6,7 @@ template(name='trade')
         .panel.panel-default.bootcards-chart
           ul.list-group
             li.list-group-item
-              a(href="#{mfg_url}") #{name}
+              a(href="#{mfg_url}" target="_blank") #{name}
             li.list-group-item
               //| current price: #{mid}
               | bid: $#{bid}
@@ -31,8 +31,6 @@ template(name='trade')
                 span Edit
               //+map
               //+placeTemplate
-            img(src="#{img_src}",style="max-height: 300px; max-width: 266px;")
-            img(src="#{img_path}",style="max-height: 300px; max-width: 266px;")
             img(src="#{img_url}",style="max-height: 300px; max-width: 266px;")
 
       .col-sm-6
@@ -53,15 +51,15 @@ template(name='trade')
       .col-sm-6
           .panel.panel-default.bootcards-chart
             .panel-heading
-              h3.panel-title Sellers
-            ul.list-group
-              +sellers
-      .col-sm-6
-          .panel.panel-default.bootcards-chart
-            .panel-heading
               h3.panel-title Buyers
             ul.list-group
               +buyers
+      .col-sm-6
+          .panel.panel-default.bootcards-chart
+            .panel-heading
+              h3.panel-title Sellers
+            ul.list-group
+              +sellers
       //.col-sm-6
         .panel.panel-default.bootcards-chart
           h3.panel-title TODO: reactively show Prices by location - $
