@@ -38,7 +38,11 @@ template(name='trade')
       .col-sm-6
         .panel.panel-default.bootcards-chart
               p: div
-                +quickForm collection="Orders" type="insert" autosave=true doc=orderDefaults
+                if currentUser
+                  +quickForm collection="Orders" type="insert" autosave=true doc=orderDefaults
+                else
+                  br
+                  h2 sign in to trade
                 //omitFields
                 //id="insertBookForm"
                 //input.form-control#tb_price_order(type='text')
