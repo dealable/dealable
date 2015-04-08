@@ -23,8 +23,8 @@ Template.trade.helpers
   userlat: -> Session.get "poslat"
   userlng: -> Session.get "poslng"
   userId: -> Meteor.userId()
-  bid: -> Orders.findOne({direction: "buy"},{sort: {'price': 1}}).price
-  offer: -> Orders.findOne({direction: "sell"},{sort: {'price': -1}}).price
+  bid: -> Orders.findOne({direction: "buy"},{sort: {'price': -1}}).price
+  offer: -> Orders.findOne({direction: "sell"},{sort: {'price': 1}}).price
 #  mid: mid: -> (bid() + offer()) / 2
 
 Template.trade.rendered = ->

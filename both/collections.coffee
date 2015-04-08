@@ -70,7 +70,7 @@ productSchema = (new SimpleSchema({
     label: "Item model number"
     optional: true
   }
-  img_iurl: {
+  img_url: {
     type: String,
     label: "Image URL"
   }
