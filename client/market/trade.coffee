@@ -10,23 +10,34 @@ Template.insertOrder.helpers
     {placeholder: 'foo', tags: true}
 
 Template.sellers.helpers
-  listsellers: -> Orders.find({direction: "sell"})
+  listsellers: -> Orders.find({product_id: @_id, direction: "sell"})
 Template.buyers.helpers
-  listbuyers: -> Orders.find({direction: "buy"})
+  listbuyers: -> Orders.find({product_id: @_id, direction: "buy"})
 Template.traded.helpers
-  listtransactions: -> Orders.find()
+  listtransactions: -> Orders.find(product_id: @_id)
 
 Template.trade.events
-  "click .delete": -> Orders.remove(this._id)
+  "click .delete": -> Orders.remove(@_id)
   
 Template.trade.helpers
   userlat: -> Session.get "poslat"
   userlng: -> Session.get "poslng"
   userId: -> Meteor.userId()
-  bid: -> Orders.findOne({direction: "buy"},{sort: {'price': -1}}).price
-  offer: -> Orders.findOne({direction: "sell"},{sort: {'price': 1}}).price
+  bid: -> Orders.findOne({product_id: @_id, direction: "buy"},{sort: {'price': -1}}).price
+  offer: -> Orders.findOne({product_id: @_id, direction: "sell"},{sort: {'price': 1}}).price
 #  mid: mid: -> (bid() + offer()) / 2
-
+  orderDefaults: ->
+#    console.log "c", moment().format('llll')
+    user_id: Meteor.userId
+    product_id: this._id
+    live_order: false
+    direction: "buy"
+    price: 100
+    location:
+      lat: Session.get "poslat"
+      lng: Session.get "poslng"
+    dateToMeet: new Date()
+    
 Template.trade.rendered = ->
     setPos = (lat, lng) ->
       Session.set "poslat", lat

@@ -142,10 +142,14 @@ TimeIntervalSchema = new SimpleSchema
         dateTimePickerOptions:
           sideBySide: true
           stepping: 15
+
 OrderSchema = new SimpleSchema
   user_id:
     type: String
     label: "User ID"
+#    autoform:
+#      afFieldInput:
+#        type: "disabled" / "readonly"
   product_id:
     type: String
     label: "Product ID"
