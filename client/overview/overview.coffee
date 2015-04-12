@@ -1,4 +1,14 @@
-Template.navbar.helpers
+class Page
+  constructor: (@route,@label,@path) ->
+  
+Template.navbarMainMenu.helpers
+  pages: -> [
+    new Page 'overview', 'Overview', '/'
+    new Page 'market', 'Market', '/market'
+    new Page 'addproduct', 'Add   Product', '/addproduct'
+    new Page 'chat', 'Chat', '/chat'    
+  ]
+Template.navbarButton.helpers
   arr3: -> [1..3]
 
 Accounts.ui.config

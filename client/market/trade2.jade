@@ -1,0 +1,127 @@
+
+template(name="FreeLayout")
+  div(id="wrap")
+    +yield 'top'
+    +yield
+  div(id="footer")
+    div(class="footer-container container")
+      p(class="text-muted")
+
+template(name="FreeLayoutMainMenu")
+  ul(id="menu-items" class="nav navbar-nav")
+    li(id="menu-item-simple" class="{{menuItemClass 'overview'}}")
+      a(href="{{pathFor 'overview'}}")
+        | Home page
+    li(id="menu-item-simple" class="{{menuItemClass 'trade2'}}")
+      a(href="{{pathFor 'trade2'}}")
+        | Cool page
+        
+template(name="CoolPage")
+  div(class="page-container container")
+    div(class="row")
+      div(class="col-md-12" id="content")
+        div(class="row" id="title_row")
+          div(class="col-md-12")
+            div(id="page_menu" class="pull-right")
+    div(class="row")
+      div(id="menu" class="col-sm-3 col-md-2")
+        h2
+        +CoolPageSideMenu
+      div(id="subcontent" class="col-sm-9 col-md-10")
+        +yield region='CoolPageSubcontent'
+        
+
+template(name="CoolPageSideMenu")
+  ul(id="menu-items" class="nav nav-pills nav-stacked")
+    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_a'}}")
+      a(href="{{pathFor 'cool_page.sub_page_a'}}")
+        | Sub-Page A
+    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_b'}}")
+      a(href="{{pathFor 'cool_page.sub_page_b'}}")
+        | Sub-Page B
+        
+
+
+template(name="CoolPageSubPageA")
+  div(class="page-container container" id="content")
+    div(class="row" id="title_row")
+      div(class="col-md-12")
+        h2(id="page_title" class="pull-left")
+          | Sub-page A
+        div(id="page_menu" class="pull-right")
+    +lorem4
+
+
+
+
+
+
+template(name="CoolPageSubPageB")
+  div(class="page-container container")
+    div(class="row")
+      div(class="col-md-12" id="content")
+        div(class="row" id="title_row")
+          div(class="col-md-12")
+            h2(id="page_title" class="pull-left")
+              | Sub-page B
+            div(id="page_menu" class="pull-right")
+        +lorem3
+    div(class="row")
+      div(class="col-md-12" id="menu")
+        +CoolPageSubPageBTabMenu
+    div(class="row")
+      div(class="col-md-12" id="subcontent")
+        +yield region='CoolPageSubPageBSubcontent'
+
+
+template(name="CoolPageSubPageBTabMenu")
+  ul(id="menu-items" class="nav nav-tabs")
+    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_b.sub_page_b_1'}}")
+      a(href="{{pathFor 'cool_page.sub_page_b.sub_page_b_1'}}")
+        | Sub-Page B-1
+    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_b.sub_page_b_2'}}")
+      a(href="{{pathFor 'cool_page.sub_page_b.sub_page_b_2'}}")
+        | Sub-Page B-2
+        
+template(name="subpage")
+  div(class="page-container container" id="content")
+    div(class="row" id="title_row")
+      div(class="col-md-12")
+        h2(id="page_title" class="pull-left")
+          | {{title}}
+        div(id="page_menu" class="pull-right")
+    +yield 'subpagecontent'
+    
+template(name="CoolPageSubPageBSubPageB1")
+  div(class="page-container container" id="content")
+    div(class="row" id="title_row")
+      div(class="col-md-12")
+        h2(id="page_title" class="pull-left")
+          | Sub-page B-1
+        div(id="page_menu" class="pull-right")
+    +lorem1
+
+template(name="CoolPageSubPageBSubPageB2")
+  div(class="page-container container" id="content")
+    div(class="row" id="title_row")
+      div(class="col-md-12")
+        h2(id="page_title" class="pull-left")
+          | Sub-page B-2
+        div(id="page_menu" class="pull-right")
+    +lorem2
+    
+template(name="lorem3")
+  +markdown
+    Cu duo explicari cotidieque, sit te error corpora. Sit ut summo nostro facilis, quodsi dissentiet ut his. Duo alii illud essent cu, pri te lorem saperet. Sit nulla partiendo te, cum corpora definiebas in. Id quo fabellas partiendo suavitate, nam tation invidunt sadipscing ea.
+    
+template(name="lorem1")
+  +markdown
+    Usu ut omnium theophrastus, vis stet incorrupte ei, ad dictas dissentias ius. Vocibus tacimates duo te. Mazim impedit efficiendi nec at. Vix ferri feugiat omittantur ne, sea eu primis maiorum volumus. Nam in legere vocent appetere.
+
+template(name="lorem2")
+  +markdown
+    Usu ne magna putant utroque, quot vidit sit ex. Sit ne corpora placerat periculis. Erant facete ut vim, mel cu iuvaret aliquam qualisque. Assum affert pro eu, impetus appareat disputando no est. Augue definitiones in vel, congue accusamus ex ius. Pro elaboraret voluptatibus ea. Sint volutpat ex quo, eam te alia ancillae.
+
+template(name="lorem4")
+  +markdown
+    Lorem ipsum dolor sit amet, per ei dicta movet ubique, vocent mandamus necessitatibus pri te. Per novum scripserit an. Id doming assentior scribentur nec, omnes persecuti cu his, vix ea ignota dissentias. Vis wisi natum epicurei an, aperiri facilis oporteat no est. Est eu diam discere.
