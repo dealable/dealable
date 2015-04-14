@@ -1,8 +1,7 @@
 Router.configure
-  #layoutTemplate: 'layout'
-  layoutTemplate: 'FreeLayout'
-#  yieldRegions:
-#    'navbar': to: 'top'
+  layoutTemplate: 'layout'
+  yieldRegions:
+    'navbar': to: 'top'
   notFoundTemplate: 'notFound'
   loadingTemplate: 'loading'
   #    urlside: to: 'aside'
@@ -32,29 +31,33 @@ Router.route '/trade2/sub_page_a',
 
 Router.route '/trade2/sub_page_b_1',
   name: 'cool_page.sub_page_b.sub_page_b_1'
-  action: ->
-    @render 'CoolPage'
-    @render 'navbar', to: 'top'
-    @render 'CoolPageSubPageB', to: 'CoolPageSubcontent'
-    @render 'subpage', 
-      to: 'CoolPageSubPageBSubcontent'
-      data: -> {title: 'Sub-page B-1'}
-    @render 'lorem1', to: 'subpagecontent'
+  template: 'CoolPage'
+  data:
+    title: "Sub-page B-1"
+  yieldRegions:
+    'navbar': to: 'top'
+    'CoolPageSubPageB': to: 'CoolPageSubcontent'
+    'lorem1': to: 'subpageblurb'
+    
 Router.route '/trade2/sub_page_b_2',
   name: 'cool_page.sub_page_b.sub_page_b_2'
-  action: -> 
-    @render 'CoolPage'
-    @render 'navbar', to: 'top'
-    @render 'CoolPageSubPageB', to: 'CoolPageSubcontent'
-    @render 'CoolPageSubPageBSubPageB2', to: 'CoolPageSubPageBSubcontent'
-
-#Router.route '/trade2/sub_page_b',
-#  name: 'trade2.sub_page_b'
-#  template: 'trade2'
-#  yieldRegions:
-#    'navbar': to: 'top'
-#    'CoolPageSubPageBSubPageB2': to: 'CoolPageSubPageBSubcontent'
-#    'CoolPageSubPageB': to: 'CoolPageSubcontent'
+  template: 'CoolPage'
+  data:
+    title: "Sub-page B-2"
+  yieldRegions:
+    'navbar': to: 'top'
+    'CoolPageSubPageB': to: 'CoolPageSubcontent'
+    'lorem2': to: 'subpageblurb'
+    
+Router.route '/trade2/sub_page_b_3',
+  name: 'cool_page.sub_page_b.sub_page_b_3'
+  template: 'CoolPage'
+  data:
+    title: "Sub-page B-3"
+  yieldRegions:
+    'navbar': to: 'top'
+    'CoolPageSubPageB': to: 'CoolPageSubcontent'
+    'lorem3': to: 'subpageblurb'
 
 Router.route '/trade2/:_id',
 #  waitOn: ->

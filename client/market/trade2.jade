@@ -1,12 +1,3 @@
-
-template(name="FreeLayout")
-  div(id="wrap")
-    +yield 'top'
-    +yield
-  div(id="footer")
-    div(class="footer-container container")
-      p(class="text-muted")
-
 template(name="FreeLayoutMainMenu")
   ul(id="menu-items" class="nav navbar-nav")
     li(id="menu-item-simple" class="{{menuItemClass 'overview'}}")
@@ -51,11 +42,6 @@ template(name="CoolPageSubPageA")
         div(id="page_menu" class="pull-right")
     +lorem4
 
-
-
-
-
-
 template(name="CoolPageSubPageB")
   div(class="page-container container")
     div(class="row")
@@ -71,18 +57,15 @@ template(name="CoolPageSubPageB")
         +CoolPageSubPageBTabMenu
     div(class="row")
       div(class="col-md-12" id="subcontent")
-        +yield region='CoolPageSubPageBSubcontent'
-
+        +subpage
 
 template(name="CoolPageSubPageBTabMenu")
   ul(id="menu-items" class="nav nav-tabs")
-    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_b.sub_page_b_1'}}")
-      a(href="{{pathFor 'cool_page.sub_page_b.sub_page_b_1'}}")
-        | Sub-Page B-1
-    li(id="menu-item-simple" class="{{menuItemClass 'cool_page.sub_page_b.sub_page_b_2'}}")
-      a(href="{{pathFor 'cool_page.sub_page_b.sub_page_b_2'}}")
-        | Sub-Page B-2
-        
+    each tabs
+      li(id="menu-item-simple" class="{{menuItemClass routename}}")
+        a(href="{{pathFor routename}}")
+          | #{tabtitle}
+
 template(name="subpage")
   div(class="page-container container" id="content")
     div(class="row" id="title_row")
@@ -90,25 +73,7 @@ template(name="subpage")
         h2(id="page_title" class="pull-left")
           | {{title}}
         div(id="page_menu" class="pull-right")
-    +yield 'subpagecontent'
-    
-template(name="CoolPageSubPageBSubPageB1")
-  div(class="page-container container" id="content")
-    div(class="row" id="title_row")
-      div(class="col-md-12")
-        h2(id="page_title" class="pull-left")
-          | Sub-page B-1
-        div(id="page_menu" class="pull-right")
-    +lorem1
-
-template(name="CoolPageSubPageBSubPageB2")
-  div(class="page-container container" id="content")
-    div(class="row" id="title_row")
-      div(class="col-md-12")
-        h2(id="page_title" class="pull-left")
-          | Sub-page B-2
-        div(id="page_menu" class="pull-right")
-    +lorem2
+    +yield region='subpageblurb'
     
 template(name="lorem3")
   +markdown

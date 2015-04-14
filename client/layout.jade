@@ -1,6 +1,10 @@
 template(name='layout')
   #wrap
     +yield 'top'
-    +yield
-    +yield "footer"
+    .page-container.container#content
+      +yield
+      +yield "footer"
 //  +yield "aside"
+  div(id="footer")
+    div(class="footer-container container")
+      p(class="text-muted")

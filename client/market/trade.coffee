@@ -5,6 +5,19 @@ Meteor.subscribe "orders"
 Session.set "poslat", 37.779528
 Session.set "poslng", -122.413756
 
+
+Template.CoolPageSubPageBTabMenu.helpers
+  tabs: [
+      routename: 'cool_page.sub_page_b.sub_page_b_1'
+      tabtitle: 'Sub-Page B-1'
+    ,
+      routename: 'cool_page.sub_page_b.sub_page_b_2'
+      tabtitle: 'Sub-Page B-2'
+    ,
+      routename: 'cool_page.sub_page_b.sub_page_b_3'
+      tabtitle: 'Sub-Page B-3'
+  ]
+    
 Template.insertOrder.helpers
   s2Opts: ->
     {placeholder: 'foo', tags: true}
