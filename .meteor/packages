@@ -27,10 +27,6 @@ rcy:nouislider
 mrt:moment-timezone
 joshowens:timezone-picker
 3stack:country-codes
-accounts-facebook
-accounts-google
-accounts-github
-accounts-twitter
 email
 less
 aldeed:autoform-bs-datetimepicker
@@ -44,3 +40,4 @@ aldeed:autoform-select2
 nemo64:bootstrap
 viacdn:bootstrapjs
 ian:accounts-ui-bootstrap-3
+perak:markdown
