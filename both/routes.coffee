@@ -2,19 +2,41 @@ Router.configure
   layoutTemplate: 'layout'
   yieldRegions:
     'navbar': to: 'top'
-  notFoundTemplate: 'notFound'
-  loadingTemplate: 'loading'
+  notFoundTemplate: 'ionic'
+#  loadingTemplate: 'loading'
   #    urlside: to: 'aside'
   #    urlbottom: to: 'footer'
-if Meteor.isClient
-  Router.onBeforeAction ->
-    # loading indicator here
-    if !@ready()
-      $('body').addClass 'wait'
-    else
-      $('body').removeClass 'wait'
-      @next()
-    return
+#if Meteor.isClient
+#  Router.onBeforeAction ->
+#    # loading indicator here
+#    if !@ready()
+#      $('body').addClass 'wait'
+#      @next()
+#    else
+#      $('body').removeClass 'wait'
+#      @next()
+#    return
+
+# ionic routes
+#Router.route 'ionic',
+#  name: 'ionic'
+#  layoutTemplate: 'ionicLayout'
+#Router.route 'ionic.trade',
+#  path: '/ionic/trade/:_id'
+##  name: 'ionic.trade'
+#  layoutTemplate: 'ionic'
+
+Router.map ->
+  @route 'ionic',
+    path: '/ionic'
+    layoutTemplate: 'ionicLayout'
+  @route 'ionic.trade',
+    path: '/ionic/:_id'
+    layoutTemplate: 'ionicLayout'
+
+#Router.route 'ionic', -> @redirect 'ionic'
+
+# coolpage templates
 Router.route '/trade2', -> @redirect 'cool_page.sub_page_a'
 
 Router.route '/trade2/sub_page_b', 
@@ -116,6 +138,7 @@ Router.route '/trade/:_id/place',
 
     
 #Router.route '/trade/:_id', ->
+
 #  @layout 'layout'
 Router.map ->
   @route 'git'

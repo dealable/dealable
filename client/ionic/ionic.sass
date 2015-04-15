@@ -1,0 +1,70 @@
+// custom variables - Darkly colors
+$gray-base:              #000;
+$gray-darker:            lighten($gray-base, 13.5%); // #222
+$gray-dark:              #303030;   // #333
+$gray:                   #464545;
+$gray-light:             #999;   // #999
+$gray-lighter:           #EBEBEB; // #eee
+
+$brand-primary:         #375a7f;
+$brand-success:         #00bc8c;
+$brand-info:            #3498DB;
+$brand-warning:         #F39C12;
+$brand-danger:          #E74C3C;
+
+$calm: $brand-primary;
+
+// Body
+$base-background-color: $gray-darker  !default; //** Background color
+$base-color:             #fff !default; //** Global text color
+$card-box-shadow:                 0 5px 10px rgba(222, 169, 23,0.5) !default; // add inverse card shadow
+$card-border-radius:              5px !default;
+$card-border-width:               15px !default;
+$card-padding:                    30px !default;
+$card-border-color:               red !default;
+
+//** Global textual link color.
+$link-color:            desaturate(lighten($brand-success, 10%),10%);
+//** Link hover color set via `darken()` function.
+$link-hover-color:      $link-color;
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
+// background picture test
+$big-bg:      '360872455_0ca975b2fd_o.jpg';
+
+.scroll-bg
+  background: url($big-bg) no-repeat center center fixed;
+  background-size: cover;
+  
+  
+// ---------------------------------------------------
+// standard variables
+@import .meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic
+@import .meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons
+// ---------------------------------------------------
+
+
+// custom app tweaks
+
+//$loading-font-size: 22px
+
+//.contact-detail
+//  background: $stable
+
+.imgcontainer
+  background-color: $item-dark-bg
+  padding: 5px 15px
+
+.list img
+  width: auto; max-height: 200px
+
+// h2, .prices, p
+.item > *
+  text-align: center
+  
+.item img
+  display: block
+  margin-left: auto
+  margin-right: auto
+

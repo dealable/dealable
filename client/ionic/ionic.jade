@@ -1,0 +1,56 @@
+template(name='ionicLayout')
+  +ionBody
+    +ionNavBar class="bar-calm"
+    +ionNavView
+      +yield
+
+template(name='ionicTrade')
+  +contentFor "headerTitle"
+    h1.title Dealable
+
+  +contentFor "headerButtonLeft"
+    +ionNavBackButton
+
+  +contentFor "headerButtonRight"
+    button.button.button-balanced(data-ion-modal="_productNew")
+      +ionIcon icon="ios-plus-empty"
+
+  +ionView
+    +ionContent
+      | trade
+      
+
+template(name='ionic')
+  +contentFor "headerTitle"
+    h1.title Dealable
+    
+  +contentFor "headerButtonRight"
+    button.button.button-balanced(data-ion-modal="_productNew")
+      +ionIcon icon="ios-plus-empty"
+
+  +ionView
+    +ionContent class="padding"
+      each products
+      
+        .list.card
+          .item.item-calm
+            h2 #{name}
+            
+          .item.item-body.item-dark
+            .imgcontainer
+              img(src="#{img_url}")
+            p #{model}
+            .container.prices
+              a.subdued(href="#") bid: 100
+              a.subdued(href="#") offer: 200
+              
+          a.item.item-calm.item-icon-left(href="/ionic/{{_id}}") 
+            i.icon.ion-arrow-graph-up-right
+            | Start trading
+
+
+template(name="_productNew")
+  +ionModal customTemplate=true
+    | hey!
+    +quickForm collection="Products" id="products-new-form" type="insert"
+

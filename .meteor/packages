@@ -41,3 +41,8 @@ nemo64:bootstrap
 viacdn:bootstrapjs
 ian:accounts-ui-bootstrap-3
 perak:markdown
+meteoric:ionic-sass
+fourseven:scss
+meteoric:ionicons-sass
+meteoric:ionic
+meteoric:autoform-ionic
