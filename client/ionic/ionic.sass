@@ -12,7 +12,36 @@ $brand-info:            #3498DB;
 $brand-warning:         #F39C12;
 $brand-danger:          #E74C3C;
 
+$light: $gray;
+$positive: $brand-primary;
 $calm: $brand-primary;
+$balanced: $brand-success;
+$energized: $brand-warning;
+$dark: #ddd;
+$stable: #222
+$input-color:                     #eee !default;
+
+
+//$light:                           #fff !default;
+//$stable:                          #f8f8f8 !default;
+//$positive:                        #387ef5 !default;
+//$calm:                            #11c1f3 !default;
+//$balanced:                        #33cd5f !default;
+//$energized:                       #ffc900 !default;
+//$assertive:                       #ef473a !default;
+//$royal:                           #886aea !default;
+//$dark:                            #444 !default;
+
+
+$input-color-placeholder:         darken($dark, 40%) !default;
+
+// item
+$item-divider-color:              #f5f5f5 !default;
+$item-divider-bg:                 #222 !default;
+$button-light-text:               #fff !default;
+$button-light-border:             $gray-darker !default;
+$button-light-active-bg:          $gray-darker !default;
+$button-light-active-border:      $gray-darker !default;
 
 // Body
 $base-background-color: $gray-darker  !default; //** Background color
@@ -53,10 +82,9 @@ $big-bg:      '360872455_0ca975b2fd_o.jpg';
 //  background: $stable
 
 .imgcontainer
-  background-color: $item-dark-bg
   padding: 5px 15px
 
-.list img
+.imgcontainer img
   width: auto; max-height: 200px
 
 // h2, .prices, p
@@ -67,4 +95,15 @@ $big-bg:      '360872455_0ca975b2fd_o.jpg';
   display: block
   margin-left: auto
   margin-right: auto
-
+  
+.at-form
+  background: #000;
+  
+#at-pwd-form > *
+  background: #000;
+  
+.modal
+  background-color: black
+  
+.modal textarea, .modal input[type="text"], .modal input[type="password"], .modal input[type="datetime"], .modal input[type="datetime-local"], .modal input[type="date"], .modal input[type="month"], .modal input[type="time"], .modal input[type="week"], .modal input[type="number"], .modal input[type="email"], .modal input[type="url"], .modal input[type="search"], .modal input[type="tel"], .modal input[type="color"] 
+  color: black

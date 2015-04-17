@@ -1,15 +1,126 @@
-template(name='ionicLayout')
+template(name="ionicLayout")
   +ionBody
-    +ionNavBar class="bar-calm"
-    +ionNavView
-      +yield
+    +ionSideMenuContainer
+      +ionSideMenus
+        +ionSideMenu side="left"
+          .bar.bar-header
+            h1.title Main Menu
+          .content.has-header
+            .list
+              .item.item-icon-right(data-ion-menu-close)
+                | Close Me
+                +ionIcon icon="ios-arrow-right"
+              a.item.item-icon-right(href='userAccounts' data-ion-menu-close)
+                if currentUser
+                  #blogout
+                    | Sign out
+                else
+                  | Log in
+                +ionIcon icon="ios-arrow-right"
+      +ionSideMenuContent
+        +ionNavBar class="bar-positive"
+        +ionNavView
+          +yield
 
-template(name='ionicTrade')
+template(name='ionicProducts')
   +contentFor "headerTitle"
     h1.title Dealable
 
   +contentFor "headerButtonLeft"
-    +ionNavBackButton
+    button.button.button-clear.pull-left(data-ion-menu-toggle="left")
+      if isAndroid
+        +ionIcon icon='android-more-vertical'
+      else
+        +ionIcon icon='navicon'
+        
+  +contentFor "headerButtonRight"
+    if currentUser
+      a.button.button.button-balanced(href='ionic/add')
+        +ionIcon icon="ios-plus-empty"
+
+  +ionView
+    +ionContent
+      .padding
+        each products
+          .list.card
+            .item.item-positive
+              h2 #{name}
+
+            .item.item-body
+              .imgcontainer
+                img(src="#{img_url}")
+              p #{model}
+              .container.prices
+                .subdued(href="#") bid: #{bid}
+                .subdued(href="#") offer: #{offer}
+            if currentUser
+              .item.tabs.tabs-secondary.tabs-icon-left
+                .tab-item.buy(data-ion-modal="_buy" href="#" style="font-size: 16px;" pid="#{_id}"  pside="buy")
+                  i.icon.balanced.ion-arrow-graph-up-right
+                  | buy
+                .tab-item.sell(data-ion-modal="_sell" href="#" style="font-size: 16px;" pid="#{_id}" pside="sell")
+                  i.icon.assertive.ion-arrow-graph-down-right
+                  | sell
+            else
+              a.item.item-positive.item-icon-left(href="/userAccounts") Log in to trade
+
+template(name="userAccounts")
+  +contentFor "headerButtonLeft"
+    +ionNavBackButton path="ionic"
+  +contentFor "headerTitle"
+    h1.title User Accounts
+  +ionView
+    +ionContent
+      if currentUser
+        .padding
+          button.button.button-positive.button-block#ioniclogout(data-action="logout") Log Out
+      else
+        +atForm
+
+template(name='ionicAddProduct')
+  +contentFor "headerTitle"
+    h1.title Dealable
+
+  +contentFor "headerButtonLeft"
+    +ionNavBackButton path="ionic"
+
+  +ionView
+    +ionContent
+        .list.card
+          .item.item-positive
+            h2 Add a new product to buy or sell
+          .item.item-body
+            +quickForm collection="Products" type="insert" template="ionic"
+      
+template(name="ionicTrade")
+  +ionModal customTemplate=true
+    | hey!
+
+template(name='_buy')
+  +ionModal id='buymodal'
+    h1.title Buy Order
+    +orderModal
+    //+quickForm collection="Products" type="insert" template="ionic"
+template(name='_sell')
+  +ionModal id='sellmodal'
+    h1.title Sell Order
+    +orderModal
+    //+quickForm collection="Products" type="insert" template="ionic"
+
+template(name="orderModal")
+  div
+    if currentUser
+      +quickForm collection="Orders" type="insert" doc=orderDefaults
+    else
+      sign in to trade
+
+
+template(name='ionicTradex')
+  +contentFor "headerTitle"
+    h1.title Dealable
+
+  +contentFor "headerButtonLeft"
+    +ionNavBackButton path="ionic"
 
   +contentFor "headerButtonRight"
     button.button.button-balanced(data-ion-modal="_productNew")
@@ -17,40 +128,4 @@ template(name='ionicTrade')
 
   +ionView
     +ionContent
-      | trade
-      
-
-template(name='ionic')
-  +contentFor "headerTitle"
-    h1.title Dealable
-    
-  +contentFor "headerButtonRight"
-    button.button.button-balanced(data-ion-modal="_productNew")
-      +ionIcon icon="ios-plus-empty"
-
-  +ionView
-    +ionContent class="padding"
-      each products
-      
-        .list.card
-          .item.item-calm
-            h2 #{name}
-            
-          .item.item-body.item-dark
-            .imgcontainer
-              img(src="#{img_url}")
-            p #{model}
-            .container.prices
-              a.subdued(href="#") bid: 100
-              a.subdued(href="#") offer: 200
-              
-          a.item.item-calm.item-icon-left(href="/ionic/{{_id}}") 
-            i.icon.ion-arrow-graph-up-right
-            | Start trading
-
-
-template(name="_productNew")
-  +ionModal customTemplate=true
-    | hey!
-    +quickForm collection="Products" id="products-new-form" type="insert"
-
+      +quickForm collection="Products" type="insert" template="ionic"

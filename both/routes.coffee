@@ -1,9 +1,8 @@
 Router.configure
-  layoutTemplate: 'layout'
-  yieldRegions:
-    'navbar': to: 'top'
+  layoutTemplate: 'ionicLayout'
   notFoundTemplate: 'ionic'
-#  loadingTemplate: 'loading'
+  loadingTemplate: 'IonLoading'
+  
   #    urlside: to: 'aside'
   #    urlbottom: to: 'footer'
 #if Meteor.isClient
@@ -18,24 +17,16 @@ Router.configure
 #    return
 
 # ionic routes
-#Router.route 'ionic',
-#  name: 'ionic'
-#  layoutTemplate: 'ionicLayout'
-#Router.route 'ionic.trade',
-#  path: '/ionic/trade/:_id'
-##  name: 'ionic.trade'
-#  layoutTemplate: 'ionic'
+Router.route 'userAccounts'
+Router.route '/',
+  template: 'ionicProducts'
+Router.route 'ionic/add',
+  template: 'ionicAddProduct'
+Router.route '/ionic/trade/:_id',
+  name: 'ionic.trade'
+  template: 'ionicTrade'
 
-Router.map ->
-  @route 'ionic',
-    path: '/ionic'
-    layoutTemplate: 'ionicLayout'
-  @route 'ionic.trade',
-    path: '/ionic/:_id'
-    layoutTemplate: 'ionicLayout'
-
-#Router.route 'ionic', -> @redirect 'ionic'
-
+  
 # coolpage templates
 Router.route '/trade2', -> @redirect 'cool_page.sub_page_a'
 
@@ -110,7 +101,7 @@ if Meteor.isClient
   ),
     only: ['trade.item']
 
-Router.route '/',
+Router.route '/full',
   name: 'overview'
   onBeforeAction: (pause) ->
       #you could set the user name on user login
