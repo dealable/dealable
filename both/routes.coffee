@@ -17,9 +17,12 @@ Router.configure
 #    return
 
 # ionic routes
-Router.route 'userAccounts'
 Router.route '/',
+  template: 'timbre'
+  layoutTemplate: ''
+Router.route 'ionic',
   template: 'ionicProducts'
+Router.route 'userAccounts'
 Router.route 'ionic/add',
   template: 'ionicAddProduct'
 Router.route '/ionic/trade/:_id',

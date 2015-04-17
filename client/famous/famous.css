@@ -1,0 +1,69 @@
+.timbre-strip {
+	background: #464545;
+	color: white;
+	font-size: 26px;
+	line-height: 45px;
+	font-family: verdana;
+	border-bottom: 5px solid white;
+	padding-left: 80px;
+}
+
+.timbre-icon {
+	color: white;
+	font-size: 26px;
+	font-family: verdana;
+}
+
+body {
+  color: black;
+  background-color: black;
+}
+.timbre-main {
+	padding: 20px;
+	background: black;
+	color: dimgray;
+}
+
+.timbre-cs {
+	border: 1px solid black;
+	background: #222;
+}
+
+.red-bg {
+  color: white;
+  background-color: red;
+}
+.green-bg {
+  color: white;
+  background-color: green;
+}
+.blue-bg {
+  color: white;
+  background-color: blue;
+}
+.yellow-bg {
+  color: white;
+  background-color: yellow;
+}
+.purple-bg {
+  color: white;
+  background-color: purple;
+}
+
+.product_overview {
+  color: white;
+  background-color: #464545;
+}
+.product_order {
+  color: white;
+  background-color: #464545;
+}
+.product_order * {
+  font-size: 12px;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: top;
+}

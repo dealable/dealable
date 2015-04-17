@@ -1,0 +1,104 @@
+template(name='timbre')
+  +HeaderFooterLayout size='[500,200]' headerSize='60'
+    +Surface target='header' template='timbre_header'
+    +Modifier target='content'
+      +Surface template='empty'
+      +ContainerSurface size='[450,1000]' overflow='hidden' class='timbre-cs'
+        +timbre_menu
+        +ContainerSurface size='[450,1000]'
+          +Surface size='[undefined, 300]' template='timbre_main' class='timbre-main' modifier='StateModifier' translate=menuTranslate
+          +Scrollview target='content'
+            +SequentialLayout
+              +famousEach products
+                +ContainerSurface size='[450, 550]' perspective=500 
+                  +Flipper
+                    +Surface id="p_overview" template='product_overview' class='product_overview' target='front' size='[400,450]' align='[.5,.5]' origin='[.5,.5]'  modifier='StateModifier'  translate=menuTranslate
+                    +Surface id="p_order" template='product_order' class='product_order' target='back' size='[400,450]' align='[.5,.5]' origin='[.5,.5]'  modifier='StateModifier'  translate=menuTranslate
+
+template(name="product_overview")
+  .item.item-positive
+    h2 #{name}
+
+  .item.item-body
+    .imgcontainer
+      img(src="#{img_url}")
+    p #{model}
+    .container.prices
+      .subdued(href="#") bid: #{bid}
+      .subdued(href="#") offer: #{offer}
+  if currentUser
+    .item.tabs.tabs-secondary.tabs-icon-left
+      .tab-item.buy(data-ion-modal="_buy" href="#" style="font-size: 16px;")
+        i.icon.balanced.ion-arrow-graph-up-right
+        | buy
+      .tab-item.sell(data-ion-modal="_sell" href="#" style="font-size: 16px;")
+        i.icon.assertive.ion-arrow-graph-down-right
+        | sell
+  else
+    a.item.item-positive.item-icon-left(href="/userAccounts") Log in to trade
+
+template(name="product_order")
+    h1.title #{pside} Order
+      div
+        if currentUser
+          +quickForm collection="Orders" type="insert" doc=orderDefaults
+        else
+          a(href="/userAccounts") sign in to trade
+
+template(name="flipper_front") Front
+template(name="flipper_back") Back
+template(name="flipper")
+  +ContainerSurface size='[150, 150]' perspective=500
+    +Flipper
+      +Surface id="f_front" target='front' template='flipper_front' class='yellow-bg' size='[150,150]' align='[.5,.5]' origin='[.5,.5]'
+      +Surface id="f_back"  target='back' template='flipper_back' class='purple-bg' size='[150,150]' align='[.5,.5]' origin='[.5,.5]'
+//    h3 where are my surfaces
+//    +es_surface1
+//    +es_surface2
+//    +es_surface3
+//    +EdgeSwapper size='[150,150]'
+//      button#t1
+//      button#t2
+//      button#t3
+//      //+showTemplate name=esTemplate
+
+
+template(name='timbre_header')
+  .bar.bar-positive
+    button.button.button-clear.pull-left#menuToggle
+      if isAndroid
+        +ionIcon icon='android-more-vertical'
+      else
+        +ionIcon icon='navicon'
+    h4.centered Famo.us Dealable
+
+//+Surface target='content' class='blue-bg'
+  | Content
+template(name='empty')
+template(name='timbre_menu')
+  +SequentialLayout id='timbre-menu' size='[400,500]' translate='[0,35]'
+    +strip icon='level-up' text='CLOSE ME'
+    +StateModifier size='[undefined,50]'
+      +Surface id='loginlogout' template='loginlogout' class='timbre-strip' size='[undefined,50]' modifier='StateModifier' rotateZ='-10' skewZ='-10'
+      +Surface class='timbre-icon' size='[50,50]' translate='[30,-2]'
+        i(class="fa fa-key")
+
+template(name='loginlogout')
+  if currentUser
+    | LOGOUT
+  else
+    | LOGIN
+
+// Here, we use a regular Meteor template to create a reusable "strip"
+template(name='strip')
+  +StateModifier size='[undefined,50]'
+    // Background and text
+    +Surface class='timbre-strip' size='[undefined,50]' modifier='StateModifier' rotateZ='-10' skewZ='-10'
+      a(href='#{href}') #{text}
+    // Icon (which is not rotated/skewed)
+    +Surface class='timbre-icon' size='[50,50]' translate='[30,-2]'
+      i(class="fa fa-#{icon}")
+
+template(name='timbre_main')
+  .timbre-main-page
+    p Click buy or sell to autofill the order details.
